@@ -7,7 +7,7 @@ import NotFound from './components/Shared/NotFound';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App text-secondary">
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
