@@ -25,7 +25,7 @@ const Footer = () => {
                                 <input
                                     type="email"
                                     placeholder="Your Email"
-                                    className="input input-bordered h-8 w-full max-w-xs"
+                                    className="input h-8 w-full max-w-xs border-neutral-400"
                                     {...register("email", {
                                         required: {
                                             value: true,
@@ -51,7 +51,7 @@ const Footer = () => {
                                 <input
                                     type="text"
                                     placeholder="Your Message"
-                                    className="input input-bordered h-8 w-full max-w-xs"
+                                    className="input h-8 w-full max-w-xs border-neutral-400"
                                     {...register("comment", {
                                         required: {
                                             value: true,
@@ -98,7 +98,7 @@ const Footer = () => {
             </div>
             <footer className="footer footer-center p-4 bg-neutral-300">
                 <div>
-                    <p>Copyright © {new Date().getFullYear()} - All right reserved by <span className='hover:text-warning'>Course Evaluator</span></p>
+                    <p className='text-white font-semibold'>Copyright © {new Date().getFullYear()} - All right reserved by <span className='hover:text-warning'>Course Evaluator</span></p>
                 </div>
             </footer>
         </div>

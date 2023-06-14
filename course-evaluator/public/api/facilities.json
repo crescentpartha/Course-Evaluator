@@ -1,0 +1,38 @@
+[
+    {
+        "_id": 1,
+        "icon": "wifi",
+        "title": "Free Wi-Fi Access",
+        "description": "Students are given access to high speed internet all over the campus through wifi."
+    },
+    {
+        "_id": 2,
+        "icon": "lab",
+        "title": "Highly Equipped Labs",
+        "description": "There are labs equipped with modern instruments in every relevant department."
+    },
+    {
+        "_id": 3,
+        "icon": "people",
+        "title": "Extra Curricular Activities",
+        "description": "Students can participate in various extra curricular activities through various clubs."
+    },
+    {
+        "_id": 4,
+        "icon": "book",
+        "title": "Rich Library",
+        "description": "The university has a fully air-conditioned and computerized rich library."
+    },
+    {
+        "_id": 5,
+        "icon": "class",
+        "title": "AC Class Rooms",
+        "description": "Classrooms are air conditioned, so the students can study in comfort."
+    },
+    {
+        "_id": 6,
+        "icon": "money",
+        "title": "Up to 75% Waiver",
+        "description": "Meritorious students are rewarded with up to 75% waiver based on several criteria."
+    }
+]
