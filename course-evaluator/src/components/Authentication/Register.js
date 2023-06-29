@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-// import SocialLogin from './SocialLogin';
+import SocialLogin from './SocialLogin';
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import PageTitle from '../Shared/PageTitle';
@@ -22,7 +22,7 @@ const Register = () => {
 
     let signInError;
     if (error || updateError) {
-        signInError = <p className='text-red-500'><small>{error?.message || updateError?.message}</small></p>
+        signInError = <p className='text-error'><small>{error?.message || updateError?.message}</small></p>
     }
 
     if (loading || updating) {
@@ -49,7 +49,7 @@ const Register = () => {
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold uppercase mb-2">Register</h2>
 
-                    {/* <SocialLogin></SocialLogin> */}
+                    <SocialLogin></SocialLogin>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Name */}
@@ -73,8 +73,8 @@ const Register = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name?.message}</span>}
-                                {errors.name?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.name?.message}</span>}
+                                {errors.name?.type === 'required' && <span className="label-text-alt text-error">{errors.name?.message}</span>}
+                                {errors.name?.type === 'pattern' && <span className="label-text-alt text-error">{errors.name?.message}</span>}
                             </label>
                         </div>
 
@@ -110,8 +110,8 @@ const Register = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email?.message}</span>}
-                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email?.message}</span>}
+                                {errors.email?.type === 'required' && <span className="label-text-alt text-error">{errors.email?.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-error">{errors.email?.message}</span>}
                             </label>
                         </div>
 
@@ -140,9 +140,9 @@ const Register = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password?.message}</span>}
-                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password?.message}</span>}
-                                {errors.password?.type === 'maxLength' && <span className="label-text-alt text-red-500">{errors.password?.message}</span>}
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-error">{errors.password?.message}</span>}
+                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-error">{errors.password?.message}</span>}
+                                {errors.password?.type === 'maxLength' && <span className="label-text-alt text-error">{errors.password?.message}</span>}
                             </label>
                         </div>
 
