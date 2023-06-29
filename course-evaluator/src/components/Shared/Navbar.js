@@ -18,7 +18,7 @@ const Navbar = () => {
 
     const menuItems = <>
         <li><Link to='/' className='text-md font-semibold uppercase'>Home</Link></li>
-        <li><Link to='/' className='text-md font-semibold uppercase'>Dashboard</Link></li>
+        <li><Link to='/dashboard' className='text-md font-semibold uppercase'>Dashboard</Link></li>
     </>
 
     return (
@@ -31,6 +31,11 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {menuItems}
+                            {
+                                user
+                                    ? <li><Link to='/login' onClick={logout} className='text-md font-semibold uppercase'>Sign Out</Link></li>
+                                    : <li><Link to='/register' className='text-md font-semibold uppercase'>Register</Link></li>
+                            }
                         </ul>
                     </div>
                     <Link to='/' className="font-lobster text-xl">Course Evaluator</Link>
@@ -43,9 +48,12 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user
-                            ? <Link to='/login' onClick={logout} className="btn btn-accent text-white">Sign Out</Link>
-                            : <Link to='/register' className="btn btn-accent text-white">Register</Link>
+                            ? <Link to='/login' onClick={logout}><button className='btn btn-accent hidden lg:block'>Sign Out</button></Link>
+                            : <Link to='/register'><button className='btn btn-accent hidden lg:block'>Register</button></Link>
                     }
+                    <label tabIndex={1} htmlFor="dashboard-sidebar" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
                 </div>
             </div >
         </div>
