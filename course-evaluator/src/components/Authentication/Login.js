@@ -113,7 +113,7 @@ const Login = () => {
                             readOnly
                         />
                     </form>
-                    <p className='text-center'><small>New to TikFood? <Link to="/register" className='text-accent'>Create New Account</Link></small></p>
+                    <p className='text-center'><small>New to Course Evaluator? <Link to="/register" className='text-accent'>Create New Account</Link></small></p>
                     <p className='text-center'><small>Forget your password? <Link to="/retrieve-password" className='text-accent'>Reset Password</Link></small></p>
                 </div>
             </div>

@@ -89,9 +89,9 @@ const Footer = () => {
                     <div>
                         <h2 className="footer-title font-lobster">Course Evaluator</h2>
                         <ul className='flex flex-col items-start gap-2'>
-                            <li><Link to='/' className='hover:text-error break-all'>Phone: +8801701701701</Link></li>
-                            <li><Link to='/' className='hover:text-error break-all'>E-mail: crescentpartha406@gmail.com</Link></li>
-                            <li><Link to='/' className='hover:text-error break-all'>Kumargaon, Sylhet-3114, Bangladesh</Link></li>
+                            <li><span className='break-all'>Phone: <Link to='tel:+8801701701701' className='hover:text-error'>+8801701701701</Link></span></li>
+                            <li><span className='break-all'>E-mail: <Link to='mailto:crescentpartha406@gmail.com' className='hover:text-error'>crescentpartha406@gmail.com</Link></span></li>
+                            <li><span className='break-all'>Kumargaon, Sylhet-3114, Bangladesh</span></li>
                         </ul>
                     </div>
                 </footer>
