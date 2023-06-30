@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Authentication/Loading';
 import { signOut } from 'firebase/auth';
+import CustomLink from './CustomLink';
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
@@ -31,8 +32,8 @@ const Navbar = () => {
     }
 
     const menuItems = <>
-        <li><Link to='/' className='text-md font-semibold uppercase'>Home</Link></li>
-        <li><Link to='/dashboard' className='text-md font-semibold uppercase'>Dashboard</Link></li>
+        <li><CustomLink to='/' className='text-md font-semibold uppercase'>Home</CustomLink></li>
+        <li><CustomLink to='/dashboard' className='text-md font-semibold uppercase'>Dashboard</CustomLink></li>
     </>
 
     return (
@@ -47,8 +48,8 @@ const Navbar = () => {
                             {menuItems}
                             {
                                 user
-                                    ? <li><Link to='/login' onClick={logout} className='text-md font-semibold uppercase'>Sign Out</Link></li>
-                                    : <li><Link to='/register' className='text-md font-semibold uppercase'>Register</Link></li>
+                                    ? <li><CustomLink to='/login' onClick={logout} className='text-md font-semibold uppercase'>Sign Out</CustomLink></li>
+                                    : <li><CustomLink to='/register' className='text-md font-semibold uppercase'>Register</CustomLink></li>
                             }
                         </ul>
                     </div>

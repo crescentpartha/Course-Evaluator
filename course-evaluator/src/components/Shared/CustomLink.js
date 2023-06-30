@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-const CustomLink_Dashboard = ({ children, to, ...props }) => {
+const CustomLink = ({ children, to, ...props }) => {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
 
@@ -19,4 +19,4 @@ const CustomLink_Dashboard = ({ children, to, ...props }) => {
     );
 };
 
-export default CustomLink_Dashboard;
+export default CustomLink;

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { FaUserCircle, FaUser, FaUserCog, FaBook } from 'react-icons/fa';
 import { SiFormstack } from 'react-icons/si';
 import PageTitle from '../Shared/PageTitle';
-import CustomLink from '../Shared/CustomLink_Dashboard';
+import CustomLink from '../Shared/CustomLink';
 
 const Dashboard = () => {
 
