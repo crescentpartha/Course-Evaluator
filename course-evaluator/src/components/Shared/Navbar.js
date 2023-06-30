@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Authentication/Loading';
 import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
+    const [dashboardIcon, setDashboardIcon] = useState(false);
+    const location = useLocation();
+
+    // Dynamically > Conditional Rendering for Dashboard Navigation Icon for Mobile Device
+    useEffect(() => {
+        // console.log(location.pathname);
+        let x = location.pathname;
+        if (x.search('dashboard') === 1) {
+            setDashboardIcon(true);
+        }
+        else {
+            setDashboardIcon(false);
+        }
+    }, [location]);
 
     if (loading) {
         return <Loading></Loading>
@@ -22,14 +36,14 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-neutral'>
+        <div className='bg-neutral sticky top-0 z-20'>
             <div className="navbar sm:px-10 max-w-screen-2xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52 z-30 fixed top-10">
                             {menuItems}
                             {
                                 user
@@ -51,9 +65,12 @@ const Navbar = () => {
                             ? <Link to='/login' onClick={logout}><button className='btn btn-accent hidden lg:block'>Sign Out</button></Link>
                             : <Link to='/register'><button className='btn btn-accent hidden lg:block'>Register</button></Link>
                     }
-                    <label tabIndex={1} htmlFor="dashboard-sidebar" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </label>
+                    {
+                        dashboardIcon &&
+                        <label tabIndex={1} htmlFor="dashboard-sidebar" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        </label>
+                    }
                 </div>
             </div >
         </div>
