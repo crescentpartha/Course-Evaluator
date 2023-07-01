@@ -10,8 +10,7 @@ const UpdateProfile = () => {
 
     return (
         <div className=''>
-            <h2 className="text-3xl font-medium font-lobster
-             mb-2 text-accent text-center uppercase">Update Your Profile</h2>
+            <h2 className="text-3xl font-medium font-lobster mb-2 text-accent text-center uppercase">Update Your Profile</h2>
             <form className='rounded font-lato font-normal p-5 card w-96 bg-accent-content shadow-md mx-auto' onSubmit={handleSubmit(onSubmit)}>
                 <h2 className='text-2xl font-medium font-opensans text-accent text-center'>Profile Info</h2>
 
@@ -77,12 +76,25 @@ const UpdateProfile = () => {
                     <label className='font-semibold pb-2 text-secondary' htmlFor="">Department<sup className='text-error'>*</sup></label>
                     <select {...register("department", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
                         <option value="">Select</option>
-                        <option value="MIT">MIT</option>
-                        <option value="SWE">SWE</option>
-                        <option value="PGD">PGD</option>
+                        <option value="Institute of Information and Communication Technology">IICT</option>
+                        <option value="Computer Science and Technology">CSE</option>
                     </select>
                     <label className="label">
                         {errors.department?.type === 'required' && <span className="label-text-alt text-error">{errors.department?.message}</span>}
+                    </label>
+                </div>
+
+                {/* Programme */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Programme<sup className='text-error'>*</sup></label>
+                    <select {...register("programme", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="Masters">Masters</option>
+                        <option value="Bachelors">Bachelors</option>
+                        <option value="Diploma">Diploma</option>
+                    </select>
+                    <label className="label">
+                        {errors.programme?.type === 'required' && <span className="label-text-alt text-error">{errors.programme?.message}</span>}
                     </label>
                 </div>
 
@@ -91,9 +103,9 @@ const UpdateProfile = () => {
                     <label className='font-semibold pb-2 text-secondary' htmlFor="">Degree<sup className='text-error'>*</sup></label>
                     <select {...register("degree", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
                         <option value="">Select</option>
-                        <option value="Masters">Masters</option>
-                        <option value="Bachelors">Bachelors</option>
-                        <option value="Diploma">Diploma</option>
+                        <option value="Masters in Information Technology">MIT</option>
+                        <option value="Software Engineering">SWE</option>
+                        <option value="Post Graduate Diploma">PGD</option>
                     </select>
                     <label className="label">
                         {errors.degree?.type === 'required' && <span className="label-text-alt text-error">{errors.degree?.message}</span>}
