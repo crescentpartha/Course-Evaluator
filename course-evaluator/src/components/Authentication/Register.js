@@ -55,44 +55,50 @@ const Register = () => {
                         {/* Name */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label py-1">
-                                <span className="label-text text-secondary">Name</span>
+                                <span className="label-text text-secondary">Name<sup className='text-error'>*</sup></span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Your Name"
                                 className="input input-bordered h-8 w-full max-w-xs"
                                 {...register("name", {
-                                    required: {
-                                        value: true,
-                                        message: 'Name is Required'
+                                    required: "Name is required",
+                                    maxLength: {
+                                        value: 50,
+                                        message: "Max length is 50 character long"
                                     },
                                     pattern: {
-                                        value: /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)*$/,
-                                        message: 'Provide a valid Name'
+                                        value: /^[A-Z]+((\s)?([A-Za-z])+)*$/,
+                                        message: 'Name is invalid'
                                     }
                                 })}
                             />
                             <label className="label">
                                 {errors.name?.type === 'required' && <span className="label-text-alt text-error">{errors.name?.message}</span>}
+                                {errors.name?.type === 'maxLength' && <span className="label-text-alt text-error">{errors.name?.message}</span>}
                                 {errors.name?.type === 'pattern' && <span className="label-text-alt text-error">{errors.name?.message}</span>}
                             </label>
                         </div>
 
                         {/* Role */}
-                        <div className="form-control w-full max-w-xs mb-2">
+                        <div className="form-control w-full max-w-xs">
                             <label className="label py-1">
-                                <span className="label-text text-secondary">Role</span>
+                                <span className="label-text text-secondary">Role<sup className='text-error'>*</sup></span>
                             </label>
-                            <select {...register("role")} className="select select-sm input-bordered w-full max-w-xs">
+                            <select {...register("role", { required: "Select one option" })} className="select select-sm input-bordered w-full max-w-xs">
+                                <option value="">Select</option>
                                 <option value="student">Student</option>
                                 <option value="teacher">Teacher</option>
                             </select>
+                            <label className="label">
+                                {errors.role?.type === 'required' && <span className="label-text-alt text-error">{errors.role?.message}</span>}
+                            </label>
                         </div>
 
                         {/* Email */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label py-1">
-                                <span className="label-text text-secondary">Email</span>
+                                <span className="label-text text-secondary">Email<sup className='text-error'>*</sup></span>
                             </label>
                             <input
                                 type="email"
@@ -118,7 +124,7 @@ const Register = () => {
                         {/* Password */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label py-1">
-                                <span className="label-text text-secondary">Password</span>
+                                <span className="label-text text-secondary">Password<sup className='text-error'>*</sup></span>
                             </label>
                             <input
                                 type="password"

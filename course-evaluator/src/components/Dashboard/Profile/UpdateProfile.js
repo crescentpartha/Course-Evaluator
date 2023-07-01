@@ -12,12 +12,12 @@ const UpdateProfile = () => {
         <div className=''>
             <h2 className="text-3xl font-medium font-lobster
              mb-2 text-accent text-center uppercase">Update Your Profile</h2>
-            <form className='rounded font-opensans p-5 card w-96 bg-accent-content shadow-md mx-auto' onSubmit={handleSubmit(onSubmit)}>
-                <h2 className='text-2xl font-medium text-accent text-center'>Profile Info</h2>
+            <form className='rounded font-lato font-normal p-5 card w-96 bg-accent-content shadow-md mx-auto' onSubmit={handleSubmit(onSubmit)}>
+                <h2 className='text-2xl font-medium font-opensans text-accent text-center'>Profile Info</h2>
 
                 {/* Name */}
                 <div className='text-start'>
-                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Name</label> <br />
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Name<sup className='text-error'>*</sup></label> <br />
                     <input
                         style={{ border: '1px solid #d6d6d6' }}
                         className='block w-full px-2 py-1 rounded'
@@ -42,34 +42,9 @@ const UpdateProfile = () => {
                     </label>
                 </div>
 
-                {/* Email */}
-                <div className="text-start">
-                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Email</label>
-                    <input
-                        style={{ border: '1px solid #d6d6d6' }}
-                        className='block w-full px-2 py-1 rounded'
-                        type="email"
-                        placeholder="Email Address"
-                        {...register("email", {
-                            required: {
-                                value: true,
-                                message: 'Email is Required'
-                            },
-                            pattern: {
-                                value: /^[a-z0-9+_.-]+@[a-z]+\.[a-z]{3}$/,
-                                message: 'Provide a valid Email'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.email?.type === 'required' && <span className="label-text-alt text-error">{errors.email?.message}</span>}
-                        {errors.email?.type === 'pattern' && <span className="label-text-alt text-error">{errors.email?.message}</span>}
-                    </label>
-                </div>
-
                 {/* Registration Number */}
                 <div className="text-start">
-                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Registration Number</label>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Registration Number<sup className='text-error'>*</sup></label>
                     <input
                         style={{ border: '1px solid #d6d6d6' }}
                         className='block w-full px-2 py-1 rounded'
@@ -78,7 +53,7 @@ const UpdateProfile = () => {
                         {...register("registration_no", {
                             required: {
                                 value: true,
-                                message: 'Registration number is Required'
+                                message: 'Registration number is required'
                             },
                             minLength: {
                                 value: 10,
@@ -98,61 +73,85 @@ const UpdateProfile = () => {
                 </div>
 
                 {/* Department */}
-                <div className='text-start mb-3'>
-                <label className='font-semibold pb-2 text-secondary' htmlFor="">Department</label>
-                    <select {...register("department")} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Department<sup className='text-error'>*</sup></label>
+                    <select {...register("department", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
                         <option value="MIT">MIT</option>
                         <option value="SWE">SWE</option>
                         <option value="PGD">PGD</option>
                     </select>
+                    <label className="label">
+                        {errors.department?.type === 'required' && <span className="label-text-alt text-error">{errors.department?.message}</span>}
+                    </label>
                 </div>
 
                 {/* Degree */}
-                <div className='text-start mb-3'>
-                <label className='font-semibold pb-2 text-secondary' htmlFor="">Degree</label>
-                    <select {...register("degree")} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Degree<sup className='text-error'>*</sup></label>
+                    <select {...register("degree", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
                         <option value="Masters">Masters</option>
                         <option value="Bachelors">Bachelors</option>
                         <option value="Diploma">Diploma</option>
                     </select>
+                    <label className="label">
+                        {errors.degree?.type === 'required' && <span className="label-text-alt text-error">{errors.degree?.message}</span>}
+                    </label>
                 </div>
 
                 {/* Semester */}
-                <div className='text-start mb-3'>
-                <label className='font-semibold pb-2 text-secondary' htmlFor="">Semester</label>
-                    <select {...register("semester")} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Semester<sup className='text-error'>*</sup></label>
+                    <select {...register("semester", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
                         <option value="1st Semester">1st Semester</option>
                         <option value="2nd Semester">2nd Semester</option>
                         <option value="3rd Semester">3rd Semester</option>
                     </select>
+                    <label className="label">
+                        {errors.semester?.type === 'required' && <span className="label-text-alt text-error">{errors.semester?.message}</span>}
+                    </label>
                 </div>
 
                 {/* Session */}
-                <div className='text-start mb-3'>
-                <label className='font-semibold pb-2 text-secondary' htmlFor="">Session</label>
-                    <select {...register("session")} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Session<sup className='text-error'>*</sup></label>
+                    <select {...register("session", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
                         <option value="2020 - 2021">2020 - 2021</option>
                         <option value="2021 - 2022">2021 - 2022</option>
                         <option value="2022 - 2023">2022 - 2023</option>
                     </select>
+                    <label className="label">
+                        {errors.session?.type === 'required' && <span className="label-text-alt text-error">{errors.session?.message}</span>}
+                    </label>
                 </div>
 
                 {/* USN */}
-                <div className='text-start mb-3'>
-                <label className='font-semibold pb-2 text-secondary' htmlFor="">USN</label>
-                    <select {...register("usn")} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">USN<sup className='text-error'>*</sup></label>
+                    <select {...register("usn", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
                         <option value="January - June">January - June</option>
                         <option value="July - December">July - December</option>
                     </select>
+                    <label className="label">
+                        {errors.usn?.type === 'required' && <span className="label-text-alt text-error">{errors.usn?.message}</span>}
+                    </label>
                 </div>
 
                 {/* Type */}
-                <div className='text-start mb-3'>
-                <label className='font-semibold pb-2 text-secondary' htmlFor="">Type</label>
-                    <select {...register("type")} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Type<sup className='text-error'>*</sup></label>
+                    <select {...register("type", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
                         <option value="Running">Running</option>
                         <option value="Passed">Passed</option>
                     </select>
+                    <label className="label">
+                        {errors.type?.type === 'required' && <span className="label-text-alt text-error">{errors.type?.message}</span>}
+                    </label>
                 </div>
 
                 {/* Image */}
@@ -163,8 +162,8 @@ const UpdateProfile = () => {
                         className='block w-full px-2 py-1 rounded'
                         {...register("image", {
                             required: {
-                                value: true,
-                                message: 'Image is Required'
+                                value: false,
+                                message: 'Image is not Required'
                             }
                         })}
                     />
@@ -181,6 +180,7 @@ const UpdateProfile = () => {
                         value="Submit"
                     />
                 </div>
+                <label className='text-xs pt-2 text-center' htmlFor=""><span className='text-error text-md'>*</span> means input is required.</label>
             </form>
         </div>
     );

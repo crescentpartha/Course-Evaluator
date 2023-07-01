@@ -34,7 +34,7 @@ const RetrievePassword = () => {
                         {/* Email */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label py-1">
-                                <span className="label-text text-secondary">Email</span>
+                                <span className="label-text text-secondary">Email<sup className='text-error'>*</sup></span>
                             </label>
                             <input
                                 type="email"
