@@ -18,6 +18,7 @@ import TeacherList from './components/Dashboard/User/TeacherList';
 import SuperAdminList from './components/Dashboard/User/SuperAdminList';
 import ModifyRole from './components/Dashboard/Admin/ModifyRole';
 import Statistics from './components/Dashboard/Admin/Statistics';
+import AddNewCourse from './components/Dashboard/Form/AddNewCourse';
 import AddNewNotice from './components/Dashboard/Form/AddNewNotice';
 import AddNewsAndEvents from './components/Dashboard/Form/AddNewsAndEvents';
 import CreateSurveyForm from './components/Dashboard/Form/CreateSurveyForm';
@@ -41,6 +42,7 @@ function App() {
           <Route path='super-admin-list' element={<SuperAdminList></SuperAdminList>}></Route>
           <Route path='modify-role' element={<ModifyRole></ModifyRole>}></Route>
           <Route path='statistics' element={<Statistics></Statistics>}></Route>
+          <Route path='add-new-course' element={<AddNewCourse></AddNewCourse>}></Route>
           <Route path='add-new-notice' element={<AddNewNotice></AddNewNotice>}></Route>
           <Route path='add-news-and-events' element={<AddNewsAndEvents></AddNewsAndEvents>}></Route>
           <Route path='create-survey-form' element={<CreateSurveyForm></CreateSurveyForm>}></Route>

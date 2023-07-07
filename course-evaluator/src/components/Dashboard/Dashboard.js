@@ -71,6 +71,7 @@ const Dashboard = () => {
                         <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><SiFormstack />Form</span>
                         <li>
                             <ul className="ps-2">
+                                <li><CustomLink to='/dashboard/add-new-course'>Add New Course</CustomLink></li>
                                 <li><CustomLink to='/dashboard/add-new-notice'>Add New Notice</CustomLink></li>
                                 <li><CustomLink to='/dashboard/add-news-and-events'>Add News & Events</CustomLink></li>
                                 <li><CustomLink to='/dashboard/create-survey-form'>Create Survey Form</CustomLink></li>
