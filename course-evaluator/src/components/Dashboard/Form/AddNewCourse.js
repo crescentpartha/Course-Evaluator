@@ -6,6 +6,20 @@ const AddNewCourse = () => {
 
     const onSubmit = (data) => {
         console.log(data);
+
+        // POST a course data from client-side to database
+        const url = `http://localhost:5000/course`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+            })
     }
 
     return (
