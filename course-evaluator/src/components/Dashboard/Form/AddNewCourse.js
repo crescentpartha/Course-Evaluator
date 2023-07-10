@@ -1,8 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddNewCourse = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log(data);
@@ -18,6 +21,8 @@ const AddNewCourse = () => {
         })
             .then(res => res.json())
             .then(result => {
+                toast.success('New course successfully added!');
+                navigate('/dashboard/course-list');
                 console.log(result);
             })
     }

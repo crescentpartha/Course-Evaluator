@@ -38,6 +38,7 @@ const Dashboard = () => {
                         <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaBook />Course</span>
                         <li>
                             <ul className="ps-2">
+                                <li><CustomLink to='/dashboard/course-list'>Course List</CustomLink></li>
                                 <li><CustomLink to='/dashboard/course-evaluation'>Course Evaluation</CustomLink></li>
                                 <li><CustomLink to='/dashboard/view-survey-responses'>View Survey Responses</CustomLink></li>
                             </ul>
