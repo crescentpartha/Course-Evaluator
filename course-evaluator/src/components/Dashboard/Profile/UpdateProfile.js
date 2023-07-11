@@ -47,7 +47,7 @@ const UpdateProfile = () => {
                     <input
                         style={{ border: '1px solid #d6d6d6' }}
                         className='block w-full px-2 py-1 rounded'
-                        type="password"
+                        type="text"
                         placeholder="Registration Number"
                         {...register("registration_no", {
                             required: {

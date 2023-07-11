@@ -6,6 +6,7 @@ import SocialLogin from './SocialLogin';
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import PageTitle from '../Shared/PageTitle';
+import useCreateUserToken from '../../hooks/useCreateUserToken';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -17,6 +18,7 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [userInfo, setUserInfo] = useState(null);
+    const [token] = useCreateUserToken([user, userInfo]);
     const navigate = useNavigate();
     // console.log(userInfo);
 

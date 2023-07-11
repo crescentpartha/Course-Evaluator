@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useCreateUserToken from '../../hooks/useCreateUserToken';
 
 const SocialLogin = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [userInfo, setUserInfo] = useState(null);
+    const [token] = useCreateUserToken([gUser, userInfo]);
     const navigate = useNavigate();
     // console.log(userInfo);
 
