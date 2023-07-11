@@ -1,16 +1,63 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddNewNotice = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const date = format(new Date(), 'PP'); // uppercase PP
     const time = format(new Date(), 'pp'); // lowercase pp
+
+    const imageStorageAPIKey = 'd0f9b89e42ed8d95bb102c26dd41f8b3';
 
     const onSubmit = (data) => {
         data.date = date;
         data.time = time;
-        console.log(data);
+        // console.log(data);
+
+        /* Upload image to imgbb server and get image url */
+        const image = data.image[0];
+        // console.log(image);
+        const formData = new FormData();
+        formData.append("image", image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageAPIKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                // console.log('imgbb', result);
+                if (result.success) {
+                    const img = result.data.url;
+                    const currentNotice = {
+                        date: data?.date,
+                        description: data?.description,
+                        time: data?.time,
+                        image: img || null,
+                        title: data?.title,
+                        type: data?.type
+                    };
+                    // console.log(currentNotice);
+                    // POST a notice data from client-side to database
+                    const url = `http://localhost:5000/notice`;
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentNotice)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            toast.success('New notice successfully added!');
+                            navigate('/dashboard/notice-list');
+                            // console.log(result);
+                        })
+                }
+            })
     }
 
     return (
@@ -90,14 +137,14 @@ const AddNewNotice = () => {
 
                 {/* Image */}
                 <div className="text-start">
-                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Photo</label> <br />
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Photo<sup className='text-error'>*</sup></label> <br />
                     <input
                         type="file"
                         className='block w-full px-2 py-1 rounded'
                         {...register("image", {
                             required: {
-                                value: false,
-                                message: 'Image is not Required'
+                                value: true,
+                                message: 'Image is Required'
                             }
                         })}
                     />

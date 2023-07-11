@@ -24,6 +24,7 @@ import AddNewsAndEvents from './components/Dashboard/Form/AddNewsAndEvents';
 import CreateSurveyForm from './components/Dashboard/Form/CreateSurveyForm';
 import CourseList from './components/Dashboard/Course/CourseList';
 import RequireAdmin from './components/Authentication/RequireAdmin';
+import NoticeList from './components/Dashboard/Admin/NoticeList';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
           <Route index element={<Profile></Profile>}></Route>
           <Route path='update-profile' element={<UpdateProfile></UpdateProfile>}></Route>
+          <Route path='notice-list' element={<NoticeList></NoticeList>}></Route>
           <Route path='course-list' element={<CourseList></CourseList>}></Route>
           <Route path='course-evaluation' element={<CourseEvaluation></CourseEvaluation>}></Route>
           <Route path='view-survey-responses' element={<ViewSurveyResponses></ViewSurveyResponses>}></Route>
