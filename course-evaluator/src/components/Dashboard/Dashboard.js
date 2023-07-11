@@ -4,8 +4,13 @@ import { FaUserCircle, FaUser, FaUserCog, FaBook } from 'react-icons/fa';
 import { SiFormstack } from 'react-icons/si';
 import PageTitle from '../Shared/PageTitle';
 import CustomLink from '../Shared/CustomLink';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import useFindAdmin from '../../hooks/useFindAdmin';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth);
+    const [admin] = useFindAdmin(user);
 
     return (
         <div className="drawer lg:drawer-open">
@@ -61,7 +66,10 @@ const Dashboard = () => {
                         <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUserCog />Admin</span>
                         <li>
                             <ul className="ps-2">
-                                <li><CustomLink to='/dashboard/modify-role'>Modify Role</CustomLink></li>
+                                {
+                                    admin === "admin" &&
+                                    <li><CustomLink to='/dashboard/modify-role'>Modify Role</CustomLink></li>
+                                }
                                 <li><CustomLink to='/dashboard/statistics'>Statistics</CustomLink></li>
                             </ul>
                         </li>

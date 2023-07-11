@@ -23,6 +23,7 @@ import AddNewNotice from './components/Dashboard/Form/AddNewNotice';
 import AddNewsAndEvents from './components/Dashboard/Form/AddNewsAndEvents';
 import CreateSurveyForm from './components/Dashboard/Form/CreateSurveyForm';
 import CourseList from './components/Dashboard/Course/CourseList';
+import RequireAdmin from './components/Authentication/RequireAdmin';
 
 function App() {
   return (
@@ -42,7 +43,11 @@ function App() {
           <Route path='view-survey-responses' element={<ViewSurveyResponses></ViewSurveyResponses>}></Route>
           <Route path='teacher-list' element={<TeacherList></TeacherList>}></Route>
           <Route path='super-admin-list' element={<SuperAdminList></SuperAdminList>}></Route>
-          <Route path='modify-role' element={<ModifyRole></ModifyRole>}></Route>
+          <Route path='modify-role' element={
+            <RequireAdmin>
+              <ModifyRole></ModifyRole>
+            </RequireAdmin>
+          }></Route>
           <Route path='statistics' element={<Statistics></Statistics>}></Route>
           <Route path='add-new-course' element={<AddNewCourse></AddNewCourse>}></Route>
           <Route path='add-new-notice' element={<AddNewNotice></AddNewNotice>}></Route>
