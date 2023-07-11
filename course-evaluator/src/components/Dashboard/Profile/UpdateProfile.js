@@ -1,11 +1,42 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import auth from '../../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const UpdateProfile = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [user] = useAuthState(auth);
+    // console.log(user);
 
     const onSubmit = (data) => {
         console.log(data);
+        // setUserInfo(data);
+
+        const image = user?.photoURL || data?.image || null;
+        const currentUser = {
+            name: data?.name,
+            degree: data?.degree,
+            department: data?.department,
+            image: image,
+            programme: data?.programme,
+            registration_no: data?.registration_no,
+            semester: data?.semester,
+            session: data?.session,
+            type: data?.type,
+            usn: data?.usn
+        };
+        // console.log(currentUser);
+        fetch(`http://localhost:5000/user/${user?.email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(currentUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data inside useUpdateUserToken', data);
+            });
     }
 
     return (
