@@ -2,41 +2,64 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import auth from '../../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateProfile = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
     // console.log(user);
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // setUserInfo(data);
+    const imageStorageAPIKey = 'd0f9b89e42ed8d95bb102c26dd41f8b3';
 
-        const image = user?.photoURL || data?.image || null;
-        const currentUser = {
-            name: data?.name,
-            degree: data?.degree,
-            department: data?.department,
-            image: image,
-            programme: data?.programme,
-            registration_no: data?.registration_no,
-            semester: data?.semester,
-            session: data?.session,
-            type: data?.type,
-            usn: data?.usn
-        };
-        // console.log(currentUser);
-        fetch(`http://localhost:5000/user/${user?.email}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(currentUser)
+    const onSubmit = (data) => {
+        // console.log(data);
+
+        /* Upload image to imgbb server and get image url */
+        const image = data.image[0];
+        // console.log(image);
+        const formData = new FormData();
+        formData.append("image", image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageAPIKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
         })
             .then(res => res.json())
-            .then(data => {
-                console.log('data inside useUpdateUserToken', data);
-            });
+            .then(result => {
+                // console.log('imgbb', result);
+                if (result.success) {
+                    const img = result.data.url;
+                    const image = user?.photoURL || img || null;
+                    const currentUser = {
+                        name: data?.name,
+                        degree: data?.degree,
+                        department: data?.department,
+                        image: image,
+                        programme: data?.programme,
+                        registration_no: data?.registration_no,
+                        semester: data?.semester,
+                        session: data?.session,
+                        type: data?.type,
+                        usn: data?.usn
+                    };
+                    // console.log(currentUser);
+                    fetch(`http://localhost:5000/user/${user?.email}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            // console.log('data inside useUpdateUserToken', data);
+                            toast.success('Profile Update Successful!');
+                            navigate('/dashboard');
+                        });
+                }
+            })
     }
 
     return (
