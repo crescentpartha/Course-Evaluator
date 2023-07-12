@@ -25,6 +25,7 @@ import CreateSurveyForm from './components/Dashboard/Form/CreateSurveyForm';
 import CourseList from './components/Dashboard/Course/CourseList';
 import RequireAdmin from './components/Authentication/RequireAdmin';
 import NoticeList from './components/Dashboard/Admin/NoticeList';
+import CourseEvaluationSurvey from './components/Dashboard/Course/CourseEvaluationSurvey';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path='notice-list' element={<NoticeList></NoticeList>}></Route>
           <Route path='course-list' element={<CourseList></CourseList>}></Route>
           <Route path='course-evaluation' element={<CourseEvaluation></CourseEvaluation>}></Route>
+          <Route path='course-evaluation/:courseSurveyId' element={<CourseEvaluationSurvey></CourseEvaluationSurvey>}></Route>
           <Route path='view-survey-responses' element={<ViewSurveyResponses></ViewSurveyResponses>}></Route>
           <Route path='teacher-list' element={<TeacherList></TeacherList>}></Route>
           <Route path='super-admin-list' element={<SuperAdminList></SuperAdminList>}></Route>

@@ -7,7 +7,7 @@ const CourseEvaluation = () => {
     // console.log(courses);
     return (
         <div>
-            <h2 className="text-3xl font-bold mb-2 text-accent">Course Evaluation</h2>
+            <h2 className="text-3xl font-medium font-lobster mb-2 text-accent text-center uppercase">Course Evaluation</h2>
 
             {/* Display all course data using get course API */}
             <div className="overflow-x-auto">
