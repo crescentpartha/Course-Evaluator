@@ -8,7 +8,7 @@ const AddNewCourse = () => {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
 
         // POST a course data from client-side to database
         const url = `http://localhost:5000/course`;
@@ -23,7 +23,7 @@ const AddNewCourse = () => {
             .then(result => {
                 toast.success('New course successfully added!');
                 navigate('/dashboard/course-list');
-                console.log(result);
+                // console.log(result);
             })
     }
 
