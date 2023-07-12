@@ -24,10 +24,14 @@ const CourseEvaluationSurvey = () => {
     const navigate = useNavigate();
     
     const courseData = {};
+    courseData.department = department;
     courseData.degree = degree;
     courseData.course_title = course_title;
     courseData.course_code = course_code;
+    courseData.course_credit = course_credit;
     courseData.semester = semester;
+    courseData.session = session;
+    courseData.usn = usn;
     courseData.image = image;
     courseData.name = name;
     courseData.registration_no = registration_no;

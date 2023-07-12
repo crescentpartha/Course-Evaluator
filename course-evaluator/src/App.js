@@ -26,6 +26,7 @@ import CourseList from './components/Dashboard/Course/CourseList';
 import RequireAdmin from './components/Authentication/RequireAdmin';
 import NoticeList from './components/Dashboard/Admin/NoticeList';
 import CourseEvaluationSurvey from './components/Dashboard/Course/CourseEvaluationSurvey';
+import ViewSurveyResponsesData from './components/Dashboard/Course/ViewSurveyResponsesData';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path='course-evaluation' element={<CourseEvaluation></CourseEvaluation>}></Route>
           <Route path='course-evaluation/:courseSurveyId' element={<CourseEvaluationSurvey></CourseEvaluationSurvey>}></Route>
           <Route path='view-survey-responses' element={<ViewSurveyResponses></ViewSurveyResponses>}></Route>
+          <Route path='view-survey-responses/:responseDataId' element={<ViewSurveyResponsesData></ViewSurveyResponsesData>}></Route>
           <Route path='teacher-list' element={<TeacherList></TeacherList>}></Route>
           <Route path='super-admin-list' element={<SuperAdminList></SuperAdminList>}></Route>
           <Route path='modify-role' element={
