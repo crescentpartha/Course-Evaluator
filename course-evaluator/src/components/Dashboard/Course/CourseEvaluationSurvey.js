@@ -1,11 +1,12 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useParticularCourse from '../../../hooks/useParticularCourse';
 import useFindUser from '../../../hooks/useFindUser';
 import auth from '../../../firebase.init';
 import { useForm } from 'react-hook-form';
 import useQuestions from '../../../hooks/useQuestions';
+import { toast } from 'react-toastify';
 
 const CourseEvaluationSurvey = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -20,6 +21,7 @@ const CourseEvaluationSurvey = () => {
     const [regUser] = useFindUser(user);
     // console.log(regUser);
     const { session, usn, image, name, registration_no } = regUser;
+    const navigate = useNavigate();
     
     const courseData = {};
     courseData.degree = degree;
@@ -52,26 +54,47 @@ const CourseEvaluationSurvey = () => {
     }
 
     const onSubmit = (data) => {
-        data.question01 = questions2?.question01;
-        data.question02 = questions2?.question02;
-        data.question03 = questions2?.question03;
-        data.question04 = questions2?.question04;
-        data.question05 = questions2?.question05;
-        data.question06 = questions2?.question06;
-        data.question07 = questions2?.question07;
-        data.question08 = questions2?.question08;
-        data.question09 = questions2?.question09;
-        data.question10 = questions2?.question10;
-        data.question11 = questions2?.question11;
-        data.question12 = questions2?.question12;
-        data.question13 = questions2?.question13;
-        data.question14 = questions2?.question14;
-        data.question15 = questions2?.question15;
-        data.question16 = questions2?.question16;
-        data.question17 = questions2?.question17;
-        data.question18 = questions2?.question18;
-        data.courseData = courseData;
-        console.log(data);
+        const answers = {};
+        answers.answer01 = data?.answer1;
+        answers.answer02 = data?.answer2;
+        answers.answer03 = data?.answer3;
+        answers.answer04 = data?.answer4;
+        answers.answer05 = data?.answer5;
+        answers.answer06 = data?.answer6;
+        answers.answer07 = data?.answer7;
+        answers.answer08 = data?.answer8;
+        answers.answer09 = data?.answer9;
+        answers.answer10 = data?.answer10;
+        answers.answer11 = data?.answer11;
+        answers.answer12 = data?.answer12;
+        answers.answer13 = data?.answer13;
+        answers.answer14 = data?.answer14;
+        answers.answer15 = data?.answer15;
+        answers.answer16 = data?.answer16;
+        answers.answer17 = data?.answer17;
+        answers.answer18 = data?.answer18;
+
+        const result = {};
+        result.questions = questions2;
+        result.answers = answers;
+        result.courseData = courseData;
+        // console.log(result);
+
+        // POST a survey response data from client-side to server-side
+        const url = `http://localhost:5000/response`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(result)
+        })
+            .then(res => res.json())
+            .then(result => {
+                toast.success('Survey response are successfully submitted!');
+                navigate('/dashboard/course-evaluation');
+                // console.log(result);
+            })
     }
 
     return (
