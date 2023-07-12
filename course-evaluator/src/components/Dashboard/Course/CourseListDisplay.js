@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CourseListDisplay = ({ course }) => {
     const { course_code, course_title, course_credit, course_type, semester } = course;
@@ -10,8 +11,8 @@ const CourseListDisplay = ({ course }) => {
             <td>{course_credit}</td>
             <td>{course_type}</td>
             <td>{semester}</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <td><Link className='text-primary'>Edit</Link></td>
+            <td><Link className='text-error'>Delete</Link></td>
         </tr>
     );
 };
