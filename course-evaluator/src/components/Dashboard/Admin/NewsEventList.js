@@ -19,7 +19,7 @@ const NewsEventList = () => {
                             <td>Description</td>
                             <td>Date</td>
                             <td>Time</td>
-                            <td>Type</td>
+                            <td>Reading Time</td>
                             <td>Edit</td>
                             <td>Delete</td>
                         </tr>
