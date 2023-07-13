@@ -1,16 +1,63 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddNewsAndEvents = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const date = format(new Date(), 'PP'); // uppercase PP
     const time = format(new Date(), 'pp'); // lowercase pp
+
+    const imageStorageAPIKey = 'd0f9b89e42ed8d95bb102c26dd41f8b3';
 
     const onSubmit = (data) => {
         data.date = date;
         data.time = time;
-        console.log(data);
+        // console.log(data);
+
+        /* Upload image to imgbb server and get image url */
+        const image = data.image[0];
+        // console.log(image);
+        const formData = new FormData();
+        formData.append("image", image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageAPIKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                // console.log('imgbb', result);
+                if (result.success) {
+                    const img = result.data.url;
+                    const currentNewsEvent = {
+                        date: data?.date,
+                        time: data?.time,
+                        title: data?.title,
+                        description: data?.description,
+                        image: img || null,
+                        reading_time: data?.reading_time
+                    };
+                    // console.log(currentNewsEvent);
+                    // POST a news_event data from client-side to server-side
+                    const url = `http://localhost:5000/news_event`;
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentNewsEvent)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            toast.success('New news or events successfully added!');
+                            navigate('/dashboard/news_event-list');
+                            // console.log(result);
+                        })
+                }
+            })
     }
 
     return (
@@ -35,7 +82,7 @@ const AddNewsAndEvents = () => {
                                 message: "Max length is 50 character long"
                             },
                             pattern: {
-                                value: /^[A-Z]+((\s)?([A-Za-z])+)*$/,
+                                value: /^[A-Z]+((\s)?([A-Za-z.,])+)*$/,
                                 message: 'Title is invalid'
                             }
                         })}
@@ -103,14 +150,14 @@ const AddNewsAndEvents = () => {
 
                 {/* Image */}
                 <div className="text-start">
-                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Photo</label> <br />
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Photo<sup className='text-error'>*</sup></label> <br />
                     <input
                         type="file"
                         className='block w-full px-2 py-1 rounded'
                         {...register("image", {
                             required: {
-                                value: false,
-                                message: 'Image is not Required'
+                                value: true,
+                                message: 'Image is Required'
                             }
                         })}
                     />

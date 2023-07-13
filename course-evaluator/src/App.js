@@ -27,6 +27,7 @@ import RequireAdmin from './components/Authentication/RequireAdmin';
 import NoticeList from './components/Dashboard/Admin/NoticeList';
 import CourseEvaluationSurvey from './components/Dashboard/Course/CourseEvaluationSurvey';
 import ViewSurveyResponsesData from './components/Dashboard/Course/ViewSurveyResponsesData';
+import NewsEventList from './components/Dashboard/Admin/NewsEventList';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route index element={<Profile></Profile>}></Route>
           <Route path='update-profile' element={<UpdateProfile></UpdateProfile>}></Route>
           <Route path='notice-list' element={<NoticeList></NoticeList>}></Route>
+          <Route path='news_event-list' element={<NewsEventList></NewsEventList>}></Route>
           <Route path='course-list' element={<CourseList></CourseList>}></Route>
           <Route path='course-evaluation' element={<CourseEvaluation></CourseEvaluation>}></Route>
           <Route path='course-evaluation/:courseSurveyId' element={<CourseEvaluationSurvey></CourseEvaluationSurvey>}></Route>

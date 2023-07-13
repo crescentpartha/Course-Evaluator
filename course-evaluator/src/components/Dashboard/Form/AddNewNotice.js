@@ -82,7 +82,7 @@ const AddNewNotice = () => {
                                 message: "Max length is 50 character long"
                             },
                             pattern: {
-                                value: /^[A-Z]+((\s)?([A-Za-z])+)*$/,
+                                value: /^[A-Z]+((\s)?([A-Za-z.,])+)*$/,
                                 message: 'Notice title is invalid'
                             }
                         })}

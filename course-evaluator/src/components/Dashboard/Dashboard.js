@@ -72,6 +72,7 @@ const Dashboard = () => {
                                 } */}
                                 <li><CustomLink to='/dashboard/modify-role'>Modify Role</CustomLink></li>
                                 <li><CustomLink to='/dashboard/notice-list'>Notice List</CustomLink></li>
+                                <li><CustomLink to='/dashboard/news_event-list'>News & Events List</CustomLink></li>
                                 <li><CustomLink to='/dashboard/statistics'>Statistics</CustomLink></li>
                             </ul>
                         </li>
