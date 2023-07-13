@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const UpdateProfile = () => {
+const UpdateProfileS = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
@@ -34,9 +34,15 @@ const UpdateProfile = () => {
                     const image = img || user?.photoURL || null;
                     const currentUser = {
                         name: data?.name,
-                        registration_no: data?.registration_no,
+                        degree: data?.degree,
                         department: data?.department,
-                        image: image
+                        image: image,
+                        programme: data?.programme,
+                        registration_no: data?.registration_no,
+                        semester: data?.semester,
+                        session: data?.session,
+                        type: data?.type,
+                        usn: data?.usn
                     };
                     // console.log(currentUser);
                     fetch(`http://localhost:5000/user/${user?.email}`, {
@@ -132,6 +138,88 @@ const UpdateProfile = () => {
                     </label>
                 </div>
 
+                {/* Programme */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Programme<sup className='text-error'>*</sup></label>
+                    <select {...register("programme", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="Masters">Masters</option>
+                        <option value="Bachelors">Bachelors</option>
+                        <option value="Diploma">Diploma</option>
+                    </select>
+                    <label className="label">
+                        {errors.programme?.type === 'required' && <span className="label-text-alt text-error">{errors.programme?.message}</span>}
+                    </label>
+                </div>
+
+                {/* Degree */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Degree<sup className='text-error'>*</sup></label>
+                    <select {...register("degree", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="Masters in Information Technology">MIT</option>
+                        <option value="Software Engineering">SWE</option>
+                        <option value="Post Graduate Diploma">PGD</option>
+                    </select>
+                    <label className="label">
+                        {errors.degree?.type === 'required' && <span className="label-text-alt text-error">{errors.degree?.message}</span>}
+                    </label>
+                </div>
+
+                {/* Semester */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Semester<sup className='text-error'>*</sup></label>
+                    <select {...register("semester", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="1st Semester">1st Semester</option>
+                        <option value="2nd Semester">2nd Semester</option>
+                        <option value="3rd Semester">3rd Semester</option>
+                    </select>
+                    <label className="label">
+                        {errors.semester?.type === 'required' && <span className="label-text-alt text-error">{errors.semester?.message}</span>}
+                    </label>
+                </div>
+
+                {/* Session */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Session<sup className='text-error'>*</sup></label>
+                    <select {...register("session", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="2020 - 2021">2020 - 2021</option>
+                        <option value="2021 - 2022">2021 - 2022</option>
+                        <option value="2022 - 2023">2022 - 2023</option>
+                    </select>
+                    <label className="label">
+                        {errors.session?.type === 'required' && <span className="label-text-alt text-error">{errors.session?.message}</span>}
+                    </label>
+                </div>
+
+                {/* USN */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">USN<sup className='text-error'>*</sup></label>
+                    <select {...register("usn", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="January - June">January - June</option>
+                        <option value="July - December">July - December</option>
+                    </select>
+                    <label className="label">
+                        {errors.usn?.type === 'required' && <span className="label-text-alt text-error">{errors.usn?.message}</span>}
+                    </label>
+                </div>
+
+                {/* Type */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Type<sup className='text-error'>*</sup></label>
+                    <select {...register("type", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="Running">Running</option>
+                        <option value="Passed">Passed</option>
+                    </select>
+                    <label className="label">
+                        {errors.type?.type === 'required' && <span className="label-text-alt text-error">{errors.type?.message}</span>}
+                    </label>
+                </div>
+
                 {/* Image */}
                 <div className="text-start">
                     <label className='font-semibold pb-2 text-secondary' htmlFor="">Photo<sup className='text-error'>*</sup></label> <br />
@@ -164,4 +252,4 @@ const UpdateProfile = () => {
     );
 };
 
-export default UpdateProfile;
+export default UpdateProfileS;

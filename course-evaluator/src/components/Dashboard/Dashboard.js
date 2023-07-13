@@ -33,7 +33,12 @@ const Dashboard = () => {
                         <li>
                             <ul className="ps-2">
                                 <li><CustomLink to='/dashboard'>Profile</CustomLink></li>
-                                <li><CustomLink to='/dashboard/update-profile'>Update Profile</CustomLink></li>
+                                {
+                                    admin === "student" && <li><CustomLink to='/dashboard/update-profile-s'>Update Profile</CustomLink></li>
+                                }
+                                {
+                                    admin !== "student" && <li><CustomLink to='/dashboard/update-profile'>Update Profile</CustomLink></li>
+                                }
                             </ul>
                         </li>
                     </div>
@@ -67,11 +72,6 @@ const Dashboard = () => {
                         <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUserCog />Admin</span>
                         <li>
                             <ul className="ps-2">
-                                {/* {
-                                    admin === "admin" &&
-                                    <li><CustomLink to='/dashboard/modify-role'>Modify Role</CustomLink></li>
-                                } */}
-                                <li><CustomLink to='/dashboard/modify-role'>Modify Role</CustomLink></li>
                                 <li><CustomLink to='/dashboard/notice-list'>Notice List</CustomLink></li>
                                 <li><CustomLink to='/dashboard/news_event-list'>News & Events List</CustomLink></li>
                                 <li><CustomLink to='/dashboard/statistics'>Statistics</CustomLink></li>
@@ -87,7 +87,6 @@ const Dashboard = () => {
                                 <li><CustomLink to='/dashboard/add-new-course'>Add New Course</CustomLink></li>
                                 <li><CustomLink to='/dashboard/add-new-notice'>Add New Notice</CustomLink></li>
                                 <li><CustomLink to='/dashboard/add-news-and-events'>Add News & Events</CustomLink></li>
-                                <li><CustomLink to='/dashboard/create-survey-form'>Create Survey Form</CustomLink></li>
                             </ul>
                         </li>
                     </div>

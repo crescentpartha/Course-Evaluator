@@ -32,43 +32,49 @@ const Profile = () => {
                         </div>
                 }
 
-                {/* // <div className='text-center'>
-                //     <div className="avatar online">
-                //         <div className="w-24 rounded-full">
-                //             <img src={image} alt="Logo" />
-                //         </div>
-                //     </div>
-                // </div> */}
-                {/* <div className="text-center">
-                <div className="avatar online placeholder">
-                    <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
-                        <span className="text-xl">JO</span>
-                    </div>
-                </div>
-            </div> */}
                 <div className='text-center'>
                     <div className='font-opensans text-medium'>
                         <p>Shahjalal University of Science and Technology</p>
                         <p>{department !== null ? department : "Department: None"}</p>
-                        <p>{degree !== null ? degree : "Degree: None"}</p>
+                        {
+                            role === "student" && <p>{degree !== null ? degree : "Degree: None"}</p>
+                        }
                     </div>
-                    <div className='flex flex-col sm:flex-row items-center justify-center gap-8 p-5 font-lato'>
-                        <div className='text-start'>
-                            <p className='font-semibold'>Name: <span className='font-normal italic'>{name !== null ? name : "None"}</span></p>
-                            <p className='font-semibold'>Email: <span className='font-normal italic'>{email !== null ? email : "None"}</span></p>
-                            <p className='font-semibold'>Registration No.: <span className='font-normal italic'>{registration_no !== null ? registration_no : "None"}</span></p>
-                            {/* <p className='font-semibold'>Registration Date: <span className='font-normal italic'>None</span></p> */}
-                            <p className='font-semibold'>Programme: <span className='font-normal italic'>{programme !== null ? programme : "None"}</span></p>
-                            <p className='font-semibold'>Semester: <span className='font-normal italic'>{semester !== null ? semester : "None"}</span></p>
+
+                    {
+                        role === "student" &&
+                        <div className='flex flex-col sm:flex-row items-center justify-center gap-8 p-5 font-lato'>
+                            <div className='text-start'>
+                                <p className='font-semibold'>Name: <span className='font-normal italic'>{name !== null ? name : "None"}</span></p>
+                                <p className='font-semibold'>Email: <span className='font-normal italic'>{email !== null ? email : "None"}</span></p>
+                                <p className='font-semibold'>Registration No.: <span className='font-normal italic'>{registration_no !== null ? registration_no : "None"}</span></p>
+                                {/* <p className='font-semibold'>Registration Date: <span className='font-normal italic'>None</span></p> */}
+                                <p className='font-semibold'>Programme: <span className='font-normal italic'>{programme !== null ? programme : "None"}</span></p>
+                                <p className='font-semibold'>Semester: <span className='font-normal italic'>{semester !== null ? semester : "None"}</span></p>
+                            </div>
+                            <div className='text-start'>
+                                <p className='font-semibold'>Session: <span className='font-normal italic'>{session !== null ? session : "None"}</span></p>
+                                <p className='font-semibold'>USN: <span className='font-normal italic'>{usn !== null ? usn : "None"}</span></p>
+                                <p className='font-semibold'>Credit: <span className='font-normal italic'>{credit !== null ? credit : "None"}</span></p>
+                                <p className='font-semibold'>Role: <span className='font-normal italic'>{role !== null ? role : "None"}</span></p>
+                                <p className='font-semibold'>Type: <span className='font-normal italic'>{type !== null ? type : "None"}</span></p>
+                            </div>
                         </div>
-                        <div className='text-start'>
-                            <p className='font-semibold'>Session: <span className='font-normal italic'>{session !== null ? session : "None"}</span></p>
-                            <p className='font-semibold'>USN: <span className='font-normal italic'>{usn !== null ? usn : "None"}</span></p>
-                            <p className='font-semibold'>Credit: <span className='font-normal italic'>{credit !== null ? credit : "None"}</span></p>
-                            <p className='font-semibold'>Role: <span className='font-normal italic'>{role !== null ? role : "None"}</span></p>
-                            <p className='font-semibold'>Type: <span className='font-normal italic'>{type !== null ? type : "None"}</span></p>
+                    }
+
+                    {
+                        role !== "student" &&
+                        <div className='flex flex-col sm:flex-row items-center justify-center gap-8 p-5 font-lato'>
+                            <div className='text-start'>
+                                <p className='font-semibold'>Name: <span className='font-normal italic'>{name !== null ? name : "None"}</span></p>
+                                <p className='font-semibold'>Email: <span className='font-normal italic'>{email !== null ? email : "None"}</span></p>
+                                <p className='font-semibold'>Role: <span className='font-normal italic'>{role !== null ? role : "None"}</span></p>
+                                <p className='font-semibold'>Registration No.: <span className='font-normal italic'>{registration_no !== null ? registration_no : "None"}</span></p>
+                            </div>
                         </div>
-                    </div>
+                    }
+
+
                 </div>
             </div>
 
