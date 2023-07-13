@@ -14,6 +14,7 @@ import Profile from './components/Dashboard/Profile/Profile';
 import UpdateProfile from './components/Dashboard/Profile/UpdateProfile';
 import CourseEvaluation from './components/Dashboard/Course/CourseEvaluation';
 import ViewSurveyResponses from './components/Dashboard/Course/ViewSurveyResponses';
+import StudentList from './components/Dashboard/User/StudentList';
 import TeacherList from './components/Dashboard/User/TeacherList';
 import SuperAdminList from './components/Dashboard/User/SuperAdminList';
 import ModifyRole from './components/Dashboard/Admin/ModifyRole';
@@ -49,6 +50,7 @@ function App() {
           <Route path='course-evaluation/:courseSurveyId' element={<CourseEvaluationSurvey></CourseEvaluationSurvey>}></Route>
           <Route path='view-survey-responses' element={<ViewSurveyResponses></ViewSurveyResponses>}></Route>
           <Route path='view-survey-responses/:responseDataId' element={<ViewSurveyResponsesData></ViewSurveyResponsesData>}></Route>
+          <Route path='student-list' element={<StudentList></StudentList>}></Route>
           <Route path='teacher-list' element={<TeacherList></TeacherList>}></Route>
           <Route path='super-admin-list' element={<SuperAdminList></SuperAdminList>}></Route>
           <Route path='modify-role' element={

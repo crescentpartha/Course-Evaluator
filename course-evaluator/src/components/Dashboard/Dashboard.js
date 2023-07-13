@@ -55,6 +55,7 @@ const Dashboard = () => {
                         <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUser />User</span>
                         <li>
                             <ul className="ps-2">
+                                <li><CustomLink to='/dashboard/student-list'>Student List</CustomLink></li>
                                 <li><CustomLink to='/dashboard/teacher-list'>Teacher List</CustomLink></li>
                                 <li><CustomLink to='/dashboard/super-admin-list'>Super Admin List</CustomLink></li>
                             </ul>
