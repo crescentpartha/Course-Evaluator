@@ -20,9 +20,10 @@ const CourseEvaluationSurvey = () => {
     const [user] = useAuthState(auth);
     const [regUser] = useFindUser(user);
     // console.log(regUser);
-    const { session, usn, image, name, registration_no } = regUser;
+    const { _id: id, completedCourse, session, usn, image, name, registration_no } = regUser;
+    // console.log(regUser);
     const navigate = useNavigate();
-    
+
     const courseData = {};
     courseData.department = department;
     courseData.degree = degree;
@@ -96,8 +97,27 @@ const CourseEvaluationSurvey = () => {
             .then(res => res.json())
             .then(result => {
                 toast.success('Survey response are successfully submitted!');
-                navigate('/dashboard/course-evaluation');
                 // console.log(result);
+
+                // Update Particular user's completedCourse or completedSurvey Info | Array[object] = [{course_title, course_code}]
+                const completedCourseInfo = {};
+                completedCourseInfo.course_title = course_title;
+                completedCourseInfo.course_code = course_code;
+                // const completedCourse = [];
+                completedCourse.push(completedCourseInfo);
+
+                fetch(`http://localhost:5000/particular_user/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(completedCourse)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log('success', data);
+                        navigate('/dashboard/course-evaluation');
+                    });
             })
     }
 
