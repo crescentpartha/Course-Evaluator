@@ -1,19 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const StudentListDisplay = ({ user }) => {
-    const { _id: id, image, name, registration_no, programme, degree } = user;
+const TeacherListDisplay = ({ user }) => {
+    const { _id: id, image, name, registration_no, designation, role } = user;
     const navigate = useNavigate();
     const handleNavigateToUserDetail = id => {
-        navigate(`/dashboard/student-list/${id}`);
+        navigate(`/dashboard/teacher-list/${id}`);
     }
     return (
-        <tr className='grid grid-cols-6 gap-4 hover:bg-neutral items-center justify-items-start text-start py-1'>
-            {/* <div className="avatar">
-                <div className="w-16 sm:w-20 rounded-xl">
-                    <img src={image} alt={name} />
-                </div>
-            </div> */}
+        <tr className='grid grid-cols-7 gap-4 hover:bg-neutral items-center justify-items-start text-start py-1'>
             {
                 // image === null ?
                 (typeof image === 'undefined') ?
@@ -46,18 +41,15 @@ const StudentListDisplay = ({ user }) => {
                     : <td className='capitalize'>{registration_no}</td>
             }
             {
-                (typeof programme === "undefined")
+                (typeof designation === "undefined")
                     ? <td className='capitalize'>None</td>
-                    : <td className='capitalize'>{programme}</td>
+                    : <td className='capitalize'>{designation}</td>
             }
-            {
-                (typeof degree === "undefined")
-                    ? <td className='capitalize'>None</td>
-                    : <td className='capitalize'>{degree}</td>
-            }
+            <td className='capitalize'>{role}</td>
             <td><button onClick={() => handleNavigateToUserDetail(id)} className='text-primary'>View</button></td>
+            <td><Link className='text-primary'>Edit</Link></td>
         </tr>
     );
 };
 
-export default StudentListDisplay;
+export default TeacherListDisplay;

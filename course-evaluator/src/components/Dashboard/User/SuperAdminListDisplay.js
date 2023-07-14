@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Teacher_AdminDisplay = ({ user }) => {
-    const { image, name, registration_no, designation, role } = user;
+const SuperAdminListDisplay = ({ user }) => {
+    const { _id: id, image, name, registration_no, designation, role } = user;
+    const navigate = useNavigate();
+    const handleNavigateToUserDetail = id => {
+        navigate(`/dashboard/super-admin-list/${id}`);
+    }
     return (
         <tr className='grid grid-cols-7 gap-4 hover:bg-neutral items-center justify-items-start text-start py-1'>
             {
@@ -42,10 +46,10 @@ const Teacher_AdminDisplay = ({ user }) => {
                     : <td className='capitalize'>{designation}</td>
             }
             <td className='capitalize'>{role}</td>
-            <td><Link className='text-primary'>View</Link></td>
+            <td><button onClick={() => handleNavigateToUserDetail(id)} className='text-primary'>View</button></td>
             <td><Link className='text-primary'>Edit</Link></td>
         </tr>
     );
 };
 
-export default Teacher_AdminDisplay;
+export default SuperAdminListDisplay;

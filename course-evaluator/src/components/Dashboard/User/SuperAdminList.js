@@ -1,6 +1,6 @@
 import React from 'react';
 import useFindUserRoleAdmin from '../../../hooks/useFindUserRoleAdmin';
-import AdminListDisplay from './Teacher_AdminDisplay';
+import SuperAdminListDisplay from './SuperAdminListDisplay';
 
 const SuperAdminList = () => {
     const [users] = useFindUserRoleAdmin();
@@ -25,10 +25,10 @@ const SuperAdminList = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map(user => <AdminListDisplay
+                            users.map(user => <SuperAdminListDisplay
                                 key={user._id}
                                 user={user}
-                            ></AdminListDisplay>)
+                            ></SuperAdminListDisplay>)
                         }
                     </tbody>
                 </table>

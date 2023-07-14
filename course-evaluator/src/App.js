@@ -27,6 +27,7 @@ import CourseEvaluationSurvey from './components/Dashboard/Course/CourseEvaluati
 import ViewSurveyResponsesData from './components/Dashboard/Course/ViewSurveyResponsesData';
 import NewsEventList from './components/Dashboard/Admin/NewsEventList';
 import UpdateProfile from './components/Dashboard/Profile/UpdateProfile';
+import ParticularUserDetails from './components/Dashboard/User/ParticularUserDetails';
 
 function App() {
   return (
@@ -50,8 +51,11 @@ function App() {
           <Route path='view-survey-responses' element={<ViewSurveyResponses></ViewSurveyResponses>}></Route>
           <Route path='view-survey-responses/:responseDataId' element={<ViewSurveyResponsesData></ViewSurveyResponsesData>}></Route>
           <Route path='student-list' element={<StudentList></StudentList>}></Route>
+          <Route path='student-list/:userDetailsId' element={<ParticularUserDetails></ParticularUserDetails>}></Route>
           <Route path='teacher-list' element={<TeacherList></TeacherList>}></Route>
+          <Route path='teacher-list/:userDetailsId' element={<ParticularUserDetails></ParticularUserDetails>}></Route>
           <Route path='super-admin-list' element={<SuperAdminList></SuperAdminList>}></Route>
+          <Route path='super-admin-list/:userDetailsId' element={<ParticularUserDetails></ParticularUserDetails>}></Route>
           <Route path='statistics' element={<Statistics></Statistics>}></Route>
           <Route path='add-new-course' element={<AddNewCourse></AddNewCourse>}></Route>
           <Route path='add-new-notice' element={<AddNewNotice></AddNewNotice>}></Route>

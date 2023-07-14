@@ -1,6 +1,6 @@
 import React from 'react';
 import useFindUserRoleTeacher from '../../../hooks/useFindUserRoleTeacher';
-import TeacherListDisplay from './Teacher_AdminDisplay';
+import TeacherListDisplay from './TeacherListDisplay';
 
 const TeacherList = () => {
     const [users] = useFindUserRoleTeacher();
