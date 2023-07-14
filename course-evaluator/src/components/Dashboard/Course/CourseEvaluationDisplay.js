@@ -36,8 +36,8 @@ const CourseEvaluationDisplay = ({ course }) => {
             <td>{semester}</td>
             {
                 title && code 
-                ? <td><button onClick={() => handleNavigateToCourseSurvey(id)} className='text-primary'>Attend</button></td>
-                : <td><button className='text-success'>Submitted</button></td>
+                ? <td><button className='text-success'>Submitted</button></td>
+                : <td><button onClick={() => handleNavigateToCourseSurvey(id)} className='text-primary'>Attend</button></td>
             }
         </tr>
     );

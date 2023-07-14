@@ -20,7 +20,7 @@ const CourseEvaluationSurvey = () => {
     const [user] = useAuthState(auth);
     const [regUser] = useFindUser(user);
     // console.log(regUser);
-    const { _id: id, completedCourse, session, usn, image, name, registration_no } = regUser;
+    const { _id: id, completedCourse, session, usn, image, name, email, registration_no } = regUser;
     // console.log(regUser);
     const navigate = useNavigate();
 
@@ -35,6 +35,7 @@ const CourseEvaluationSurvey = () => {
     courseData.usn = usn;
     courseData.image = image;
     courseData.name = name;
+    courseData.email = email;
     courseData.registration_no = registration_no;
 
     const questions2 = {

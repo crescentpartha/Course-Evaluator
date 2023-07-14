@@ -4,10 +4,12 @@ import auth from '../../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import useFindUser from '../../../hooks/useFindUser';
 
 const UpdateProfileS = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [user] = useAuthState(auth);
+    const [regUser] = useFindUser(user);
     const navigate = useNavigate();
     // console.log(user);
 
@@ -32,6 +34,7 @@ const UpdateProfileS = () => {
                 if (result.success) {
                     const img = result.data.url;
                     const image = img || user?.photoURL || null;
+                    const completedCourse = regUser.completedCourse || [];
                     const currentUser = {
                         name: data?.name,
                         degree: data?.degree,
@@ -43,7 +46,8 @@ const UpdateProfileS = () => {
                         session: data?.session,
                         gender: data?.gender,
                         type: data?.type,
-                        usn: data?.usn
+                        usn: data?.usn,
+                        completedCourse: completedCourse
                     };
                     // console.log(currentUser);
                     fetch(`http://localhost:5000/user/${user?.email}`, {
