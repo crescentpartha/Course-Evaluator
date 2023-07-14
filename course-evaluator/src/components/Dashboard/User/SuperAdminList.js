@@ -13,11 +13,13 @@ const SuperAdminList = () => {
             <div className="overflow-x-auto">
                 <table className="table table-xs table-pin-cols">
                     <thead>
-                        <tr className='grid grid-cols-5 gap-4 bg-accent text-info items-center justify-items-start text-start py-1'>
+                        <tr className='grid grid-cols-7 gap-4 bg-accent text-info items-center justify-items-start text-start uppercase py-1'>
                             <td>Image</td>
                             <td>Name</td>
                             <td>ID</td>
+                            <td>Designation</td>
                             <td>Role</td>
+                            <td>Details</td>
                             <td>Modify Role</td>
                         </tr>
                     </thead>

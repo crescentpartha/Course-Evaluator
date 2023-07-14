@@ -37,6 +37,7 @@ const UpdateProfile = () => {
                         registration_no: data?.registration_no,
                         gender: data?.gender,
                         department: data?.department,
+                        designation: data?.designation,
                         image: image
                     };
                     // console.log(currentUser);
@@ -130,6 +131,24 @@ const UpdateProfile = () => {
                     </select>
                     <label className="label">
                         {errors.department?.type === 'required' && <span className="label-text-alt text-error">{errors.department?.message}</span>}
+                    </label>
+                </div>
+
+                {/* Designation */}
+                <div className='text-start'>
+                    <label className='font-semibold pb-2 text-secondary' htmlFor="">Designation<sup className='text-error'>*</sup></label>
+                    <select {...register("designation", { required: "Select one option" })} className='d-block w-full px-2 py-1 rounded' style={{ border: '1px solid #d6d6d6' }}>
+                        <option value="">Select</option>
+                        <option value="Lecturer">Lecturer</option>
+                        <option value="Senior Lecturer">Senior Lecturer</option>
+                        <option value="Assistant Professor">Assistant Professor</option>
+                        <option value="Associate Professor">Associate Professor</option>
+                        <option value="Professor">Professor</option>
+                        <option value="Registrar">Registrar</option>
+                        <option value="Director">Director</option>
+                    </select>
+                    <label className="label">
+                        {errors.designation?.type === 'required' && <span className="label-text-alt text-error">{errors.designation?.message}</span>}
                     </label>
                 </div>
 
