@@ -15,17 +15,17 @@ const useCreateUserToken = user => {
             email: email,
             name: name,
             role: role,
-            degree: null,
-            department: null,
-            credit: null,
-            image: null,
-            programme: null,
-            registration_no: null,
-            registration_date: null,
-            semester: null,
-            session: null,
-            type: null,
-            usn: null
+            // degree: null,
+            // department: null,
+            // credit: null,
+            // image: null,
+            // programme: null,
+            // registration_no: null,
+            // registration_date: null,
+            // semester: null,
+            // session: null,
+            // type: null,
+            // usn: null
         };
         // console.log(email, name, role);
         if (email) {
