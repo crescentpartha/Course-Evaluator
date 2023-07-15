@@ -37,8 +37,8 @@ const NewsEventListDisplay = ({newsEvent}) => {
                     <img src={image} alt={title} />
                 </div>
             </div>
-            <td>{title}</td>
-            <td title={description}>{description.length > 60 ? description.slice(0, 60) + "..." : description}</td>
+            <td title={title}>{title.length > 40 ? title.slice(0, 40) + "..." : title}</td>
+            <td>{description.length > 60 ? description.slice(0, 60) + "..." : description}</td>
             <td>{date}</td>
             <td>{time}</td>
             <td>{reading_time}</td>
