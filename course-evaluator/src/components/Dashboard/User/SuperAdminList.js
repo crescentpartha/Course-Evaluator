@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useFindUserRoleAdmin from '../../../hooks/useFindUserRoleAdmin';
 import SuperAdminListDisplay from './SuperAdminListDisplay';
+import ModifyRoleModal from './ModifyRoleModal';
 
 const SuperAdminList = () => {
     const [users] = useFindUserRoleAdmin();
     // console.log(users);
+    const [userData, setUserData] = useState(null);
     return (
         <div>
             <h2 className="text-3xl font-medium font-lobster mb-2 text-accent text-center uppercase">Super Admin List</h2>
@@ -28,9 +30,11 @@ const SuperAdminList = () => {
                             users.map(user => <SuperAdminListDisplay
                                 key={user._id}
                                 user={user}
+                                setUserData={setUserData}
                             ></SuperAdminListDisplay>)
                         }
                     </tbody>
+                    {userData && <ModifyRoleModal userData={userData}></ModifyRoleModal>}
                 </table>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const TeacherListDisplay = ({ user }) => {
+const TeacherListDisplay = ({ user, setUserData }) => {
     const { _id: id, image, name, registration_no, designation, role } = user;
     const navigate = useNavigate();
     const handleNavigateToUserDetail = id => {
@@ -47,7 +47,12 @@ const TeacherListDisplay = ({ user }) => {
             }
             <td className='capitalize'>{role}</td>
             <td><button onClick={() => handleNavigateToUserDetail(id)} className='text-primary'>View</button></td>
-            <td><Link className='text-primary'>Edit</Link></td>
+            {/* <td><button onClick={() => setUserData(user)} htmlFor="delete-model" className='text-primary'>Edit</button></td> */}
+            <td><label
+                htmlFor="delete-modal"
+                className='text-primary text-start border-0 p-0 text-xs font-normal btn btn-link capitalize no-underline hover:no-underline'
+                onClick={() => setUserData(user)}
+            >Edit</label></td>
         </tr>
     );
 };
