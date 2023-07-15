@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useCreateUserToken from '../../hooks/useCreateUserToken';
 
@@ -9,6 +9,8 @@ const SocialLogin = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [token] = useCreateUserToken([gUser, userInfo]);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/dashboard';
     // console.log(userInfo);
 
     let signInError;
@@ -18,7 +20,8 @@ const SocialLogin = () => {
 
     if (gUser) {
         // console.log(gUser);
-        navigate('/');
+        // navigate('/');
+        navigate(from, {replace: true});
     }
 
     const handleSignInWithGoogle = () => {

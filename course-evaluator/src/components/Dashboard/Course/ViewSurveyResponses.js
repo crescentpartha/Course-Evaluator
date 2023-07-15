@@ -20,7 +20,7 @@ const ViewSurveyResponses = () => {
                             <td>Code</td>
                             <td>Semester</td>
                             <td>View</td>
-                            <td>Action</td>
+                            <td>Delete</td>
                         </tr>
                     </thead>
                     <tbody>

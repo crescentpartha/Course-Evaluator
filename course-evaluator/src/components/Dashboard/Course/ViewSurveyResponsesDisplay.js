@@ -1,11 +1,16 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
+import useFindAdmin from '../../../hooks/useFindAdmin';
 
 const ViewSurveyResponsesDisplay = ({ response }) => {
     const { _id: id, courseData } = response;
     const { name, image, registration_no, course_title, course_code, semester } = courseData;
     const navigate = useNavigate();
+    const [user] = useAuthState(auth);
+    const [admin] = useFindAdmin(user);
 
     const handleNavigateToResponseDataDetails = id => {
         navigate(`${id}`);
@@ -49,7 +54,11 @@ const ViewSurveyResponsesDisplay = ({ response }) => {
             <td>{course_code}</td>
             <td>{semester}</td>
             <td><button onClick={() => handleNavigateToResponseDataDetails(id)} className='text-primary'>View</button></td>
-            <td><button onClick={() => handleDelete(id)} className='text-error'>Delete</button></td>
+            {
+                admin === 'teacher'
+                ? <td><button onClick={() => toast.success('Only allowed for admin user!')} className='text-error'>Not Allowed</button></td>
+                : <td><button onClick={() => handleDelete(id)} className='text-error'>Delete</button></td>
+            }
         </tr>
     );
 };

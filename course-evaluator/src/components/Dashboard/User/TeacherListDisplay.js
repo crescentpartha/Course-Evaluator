@@ -1,9 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useFindAdmin from '../../../hooks/useFindAdmin';
+import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
 
 const TeacherListDisplay = ({ user, setUserData }) => {
     const { _id: id, image, name, registration_no, designation, role } = user;
     const navigate = useNavigate();
+    const [user2] = useAuthState(auth);
+    const [admin] = useFindAdmin(user2);
+
     const handleNavigateToUserDetail = id => {
         navigate(`/dashboard/teacher-list/${id}`);
     }
@@ -48,11 +55,21 @@ const TeacherListDisplay = ({ user, setUserData }) => {
             <td className='capitalize'>{role}</td>
             <td><button onClick={() => handleNavigateToUserDetail(id)} className='text-primary'>View</button></td>
             {/* <td><button onClick={() => setUserData(user)} htmlFor="delete-model" className='text-primary'>Edit</button></td> */}
-            <td><label
-                htmlFor="delete-modal"
-                className='text-primary text-start border-0 p-0 text-xs font-normal btn btn-link capitalize no-underline hover:no-underline'
-                onClick={() => setUserData(user)}
-            >Edit</label></td>
+            {
+                admin === 'teacher'
+                    ?
+                    <td><label
+                        htmlFor="delete-modal"
+                        className='text-primary text-start border-0 p-0 text-xs font-normal btn btn-link capitalize no-underline hover:no-underline'
+                        onClick={() => toast.success('Only allowed for admin user!')}
+                    >Not Allowed</label></td>
+                    :
+                    <td><label
+                        htmlFor="delete-modal"
+                        className='text-primary text-start border-0 p-0 text-xs font-normal btn btn-link capitalize no-underline hover:no-underline'
+                        onClick={() => setUserData(user)}
+                    >Edit</label></td>
+            }
         </tr>
     );
 };

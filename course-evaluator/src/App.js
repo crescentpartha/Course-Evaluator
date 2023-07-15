@@ -28,6 +28,7 @@ import ViewSurveyResponsesData from './components/Dashboard/Course/ViewSurveyRes
 import NewsEventList from './components/Dashboard/Admin/NewsEventList';
 import UpdateProfile from './components/Dashboard/Profile/UpdateProfile';
 import ParticularUserDetails from './components/Dashboard/User/ParticularUserDetails';
+import RequireAuth from './components/Authentication/RequireAuth';
 
 function App() {
   return (
@@ -39,7 +40,11 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/retrieve-password' element={<RetrievePassword></RetrievePassword>}></Route>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard></Dashboard>
+          </RequireAuth>
+        }>
           <Route index element={<Profile></Profile>}></Route>
           <Route path='update-profile' element={<UpdateProfile></UpdateProfile>}></Route>
           <Route path='update-profile-s' element={<UpdateProfileS></UpdateProfileS>}></Route>

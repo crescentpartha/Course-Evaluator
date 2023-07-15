@@ -1,9 +1,14 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
+import useFindAdmin from '../../../hooks/useFindAdmin';
 
 const CourseListDisplay = ({ course }) => {
     const { _id: id, course_code, course_title, course_credit, course_type, semester } = course;
+    const [user] = useAuthState(auth);
+    const [admin] = useFindAdmin(user);
 
     const handleDelete = id => {
         // console.log(id);
@@ -39,7 +44,11 @@ const CourseListDisplay = ({ course }) => {
             <td>{course_type}</td>
             <td>{semester}</td>
             <td><Link className='text-primary'>Edit</Link></td>
-            <td><button onClick={() => handleDelete(id)} className='text-error'>Delete</button></td>
+            {
+                admin === 'teacher'
+                ? <td><button onClick={() => toast.success('Only allowed for admin user!')} className='text-error'>Not Allowed</button></td>
+                : <td><button onClick={() => handleDelete(id)} className='text-error'>Delete</button></td>
+            }
         </tr>
     );
 };

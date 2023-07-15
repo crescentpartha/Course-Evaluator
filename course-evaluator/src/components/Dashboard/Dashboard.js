@@ -48,48 +48,63 @@ const Dashboard = () => {
                         <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaBook />Course</span>
                         <li>
                             <ul className="ps-2">
-                                <li><CustomLink to='/dashboard/course-list'>Course List</CustomLink></li>
-                                <li><CustomLink to='/dashboard/course-evaluation'>Course Evaluation</CustomLink></li>
-                                <li><CustomLink to='/dashboard/view-survey-responses'>View Survey Responses</CustomLink></li>
+                                {
+                                    admin !== "student" && <li><CustomLink to='/dashboard/course-list'>Course List</CustomLink></li>
+                                }
+                                {
+                                    admin === "student" && <li><CustomLink to='/dashboard/course-evaluation'>Course Evaluation</CustomLink></li>
+                                }
+                                {
+                                    admin !== "student" && <li><CustomLink to='/dashboard/view-survey-responses'>View Survey Responses</CustomLink></li>
+                                }
                             </ul>
                         </li>
                     </div>
 
                     {/* User */}
-                    <div>
-                        <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUser />User</span>
-                        <li>
-                            <ul className="ps-2">
-                                <li><CustomLink to='/dashboard/student-list'>Student List</CustomLink></li>
-                                <li><CustomLink to='/dashboard/teacher-list'>Teacher List</CustomLink></li>
-                                <li><CustomLink to='/dashboard/super-admin-list'>Super Admin List</CustomLink></li>
-                            </ul>
-                        </li>
-                    </div>
+                    {
+                        admin !== 'student' &&
+                        <div>
+                            <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUser />User</span>
+                            <li>
+                                <ul className="ps-2">
+                                    <li><CustomLink to='/dashboard/student-list'>Student List</CustomLink></li>
+                                    <li><CustomLink to='/dashboard/teacher-list'>Teacher List</CustomLink></li>
+                                    <li><CustomLink to='/dashboard/super-admin-list'>Super Admin List</CustomLink></li>
+                                </ul>
+                            </li>
+                        </div>
+                    }
 
                     {/* Admin */}
-                    <div>
-                        <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUserCog />Admin</span>
-                        <li>
-                            <ul className="ps-2">
-                                <li><CustomLink to='/dashboard/notice-list'>Notice List</CustomLink></li>
-                                <li><CustomLink to='/dashboard/news_event-list'>News & Events List</CustomLink></li>
-                                <li><CustomLink to='/dashboard/statistics'>Statistics</CustomLink></li>
-                            </ul>
-                        </li>
-                    </div>
+                    {
+                        admin === 'admin' &&
+                        <div>
+                            <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUserCog />Admin</span>
+                            <li>
+                                <ul className="ps-2">
+                                    <li><CustomLink to='/dashboard/notice-list'>Notice List</CustomLink></li>
+                                    <li><CustomLink to='/dashboard/news_event-list'>News & Events List</CustomLink></li>
+                                    {/* <li><CustomLink to='/dashboard/statistics'>Statistics</CustomLink></li> */}
+                                </ul>
+                            </li>
+                        </div>
+                    }
 
                     {/* Form */}
-                    <div>
-                        <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><SiFormstack />Form</span>
-                        <li>
-                            <ul className="ps-2">
-                                <li><CustomLink to='/dashboard/add-new-course'>Add New Course</CustomLink></li>
-                                <li><CustomLink to='/dashboard/add-new-notice'>Add New Notice</CustomLink></li>
-                                <li><CustomLink to='/dashboard/add-news-and-events'>Add News & Events</CustomLink></li>
-                            </ul>
-                        </li>
-                    </div>
+                    {
+                        admin === 'admin' &&
+                        <div>
+                            <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><SiFormstack />Form</span>
+                            <li>
+                                <ul className="ps-2">
+                                    <li><CustomLink to='/dashboard/add-new-course'>Add New Course</CustomLink></li>
+                                    <li><CustomLink to='/dashboard/add-new-notice'>Add New Notice</CustomLink></li>
+                                    <li><CustomLink to='/dashboard/add-news-and-events'>Add News & Events</CustomLink></li>
+                                </ul>
+                            </li>
+                        </div>
+                    }
                 </ul>
             </div>
         </div>
