@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useFindAdmin from '../../../hooks/useFindAdmin';
 import { toast } from 'react-toastify';
 import { useAuthState } from 'react-firebase-hooks/auth';
