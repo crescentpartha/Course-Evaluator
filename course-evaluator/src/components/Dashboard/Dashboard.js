@@ -83,9 +83,9 @@ const Dashboard = () => {
                             <span className='bg-secondary-content text-start ps-5 py-2 font-semibold flex flex-nowrap flex-row items-center gap-1'><FaUserCog />Admin</span>
                             <li>
                                 <ul className="ps-2">
+                                    <li><CustomLink to='/dashboard/statistics'>Statistics | Report</CustomLink></li>
                                     <li><CustomLink to='/dashboard/notice-list'>Notice List</CustomLink></li>
                                     <li><CustomLink to='/dashboard/news_event-list'>News & Events List</CustomLink></li>
-                                    {/* <li><CustomLink to='/dashboard/statistics'>Statistics</CustomLink></li> */}
                                 </ul>
                             </li>
                         </div>
