@@ -8,10 +8,10 @@ const Statistics = () => {
     const [courseCode, setCourseCode] = useState("");
     // console.log(courseTitle, courseCode);
     const [statistics] = useParticularCourseStatistics({ courseCode, courseTitle });
-    console.log(statistics);
+    // console.log(statistics);
 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         const { course_title, course_code } = data;
         setCourseTitle(course_title);
         setCourseCode(course_code);
